@@ -5,6 +5,6 @@ use Mojolicious::Lite;
 use Test::Mojo;
 
 my $t = Test::Mojo->new;
-$t->get_ok('/')->status_is(200)->content_is('Hello Mojo!');
+$t->get_ok('/');
 
 done_testing();

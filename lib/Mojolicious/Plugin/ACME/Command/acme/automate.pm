@@ -51,7 +51,7 @@ sub _automate {
     'n|name=s'       => \my $name,
     't|test'         => \my $test,
     'T|template=s'   => \(my $template = 'nginx_default'),
-    'o|option=s'     => \%option;
+    'o|options=s'    => \%options;
   $name ||= $self->app->moniker;
   $name .= 'test' if $test;
 
@@ -136,7 +136,7 @@ sub _automate {
     path($webdir)->child($host)->spurt(
       Mojo::Template->new->vars(1)->render_file(
         $self->app->home->child('templates', "$template.ep"),
-        {%option, hosts => \@args, cert => $cert_path, key => $key_path}
+        {%options, hosts => \@args, cert => $cert_path, key => $key_path}
       )
     ) if $template && !$acme->ca->test_mode; # TODO: unless go+w
   }
@@ -152,7 +152,7 @@ Mojolicious::Plugin::ACME::Command::acme::automate - Automate ACME registration 
 
 =head1 SYNOPSIS
 
-  Usage: APPLICATION acme cert generate [OPTIONS]
+  Usage: APPLICATION acme automate [OPTIONS]
     myapp acme automate
     myapp acme automate -t -a myaccount.key -T template -l http://*:8928 -o proxy_pass=http://127.0.0.1:3000 domain1.com {domain2.com, ...}
 
