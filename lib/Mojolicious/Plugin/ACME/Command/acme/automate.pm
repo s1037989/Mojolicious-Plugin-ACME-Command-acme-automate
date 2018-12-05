@@ -1,7 +1,7 @@
 package Mojolicious::Plugin::ACME::Command::acme::automate;
 use Mojo::Base 'Mojolicious::Plugin::ACME::Command';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Mojo::Collection 'c';
 use Mojo::File 'path';
